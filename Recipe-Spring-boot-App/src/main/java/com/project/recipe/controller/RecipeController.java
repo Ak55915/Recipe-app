@@ -1,6 +1,7 @@
 package com.project.recipe.controller;
 
 import com.project.recipe.DTO.RecipeDTO;
+import com.project.recipe.DTO.RecipeDtoResponse;
 import com.project.recipe.model.Recipe;
 import com.project.recipe.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,13 @@ public class RecipeController {
     }
 
     @GetMapping("/getRecipe/{recipeID}")
-    public ResponseEntity<Recipe> getRecipeByID(@PathVariable int recipeID) {
+    public ResponseEntity<RecipeDtoResponse> getRecipeByID(@PathVariable int recipeID) {
         return new ResponseEntity<>(recipeService.getRecipeById(recipeID), HttpStatus.OK);
     }
 
     @PutMapping("/updateRecipe")
-    public ResponseEntity<String> updateRecipe(@RequestBody Recipe newRecipe) {
-        return new ResponseEntity<>(recipeService.updateRecipe(newRecipe), HttpStatus.OK);
+    public ResponseEntity<String> updateRecipe(@RequestBody RecipeDTO recipeDTO) {
+        return new ResponseEntity<>(recipeService.updateRecipe(recipeDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteRecipe/{recipeId}")
